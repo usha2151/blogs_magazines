@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getMagazine } from "../redux/actions/action";
 
 const Magazine = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.magazineReducer);
 
-    const [magazine, setMagazine] = useState([]);
+  useEffect(() => {
+    dispatch(getMagazine());
+  }, [dispatch]);
 
-  const fetchPost = async () => {
-    await getDocs(collection(db, "magazine")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      
-      setMagazine(newData);
-      console.log(Magazine);
-    });
-  };
-
-  useEffect(()=>{
-    fetchPost();
-}, [])
+  console.log('Users in component:', users);
 
   return (
     <div className="w-[1300px] mx-auto mt-8 p-12">
-    {magazine.map((element, id) => (
-      <div key={id}>
-        <h3 className="text-3xl mb-8">{element.title}</h3>
-        <div dangerouslySetInnerHTML={{ __html: element.Content }} />
-      </div>
-    ))}
-  </div>
-  )
-}
+      {users && users.length > 0 ? (
+        users.map((element, id) => (
+          <div key={id}>
+            <h3 className="text-3xl mb-8">{element.title}</h3>
+            <div dangerouslySetInnerHTML={{ __html: element.content }} />
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
 
-export default Magazine
+
+export default Magazine;

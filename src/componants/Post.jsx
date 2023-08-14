@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "jodit";
 import "jodit/build/jodit.min.css";
 import JoditEditor from "jodit-react";
-import { addDoc, collection } from "firebase/firestore";
-import { serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase";
+// import { addDoc, collection } from "firebase/firestore";
+import { useDispatch } from 'react-redux';
+import { registerUser } from "../redux/actions/action";
+// import { db } from "../firebase";
 
 
   
@@ -32,43 +33,38 @@ import { db } from "../firebase";
 
 const Post = () => {
 
-	  const [data, setData] = useState("");
+  const dispatch = useDispatch();
+  
+	  const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [cat, setCat] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState(null);
+
 
     const handleSubmit = (e) =>{
+      
+      try {
         e.preventDefault();
-        if(title == '' || data == '' || cat == ''){
-          alert("form filled!");
+        console.log(image);
+        // if(title == '' || content == '' || cat == ''){
+          let data={
+            title,content,imagename: image.name,image,cat,description
         }
-        else{
-          // var c = document.getElementById("ab").innerHTML =`<div>${data}</div>`;
-
-          
-          let collectionName = "";
-          if (cat === "blog") {
-            collectionName = "blog";
-          } else if (cat === "magazine") {
-            collectionName = "magazine";
-          } else if (cat === "interview") {
-            collectionName = "interview";
-          }
-
-           addDoc(collection(db, collectionName), {
-           title:title,
-           Content:data,
-           date: serverTimestamp()
-           }).then((res)=>{
-            alert("post add");
-            console.log(res);
-           }).catch((err)=>{
-            alert(err);
-        })
-        }
-        }
+        dispatch(registerUser(data));
+        setTitle('');
+        setContent('');
+        setImage('');    
+      } catch(err){
+        alert(err)
+      }
+      
+      }
         
-        
-   
+        const handleImageChange = (e) => {
+          const file = e.target.files[0];
+          setImage(file);
+        };
 
   
   return (
@@ -95,15 +91,34 @@ const Post = () => {
             </div>
             <div>
               <label
+                for="name"
+                class="text-sm text-gray-700 block mb-1 font-medium"
+              >
+              Post Description
+              </label>
+              <textarea
+               cols="30"
+                rows="10"
+                type="text"
+                name="name"
+                id="name"
+                onChange={(e)=>{setDescription(e.target.value)}}
+                class="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                placeholder="title"
+              >
+              </textarea>
+            </div>
+            <div>
+              <label
                 for="email"
                 class="text-sm text-gray-700 block mb-1 font-medium"
               >
                 Post Content
               </label>
               <JoditEditor
-              value={data}
+              value={content}
               config={editorConfig}
-              onChange={(value) => setData(value)}
+              onChange={(value) => setContent(value)}
               />
 
             </div>
@@ -127,6 +142,12 @@ const Post = () => {
               </select>
             </div>
 
+
+
+            <div>
+        <label>Image</label>
+        <input type="file" onChange={handleImageChange} />
+      </div>
           </div>
           <div class="space-x-4 mt-8 ">
             <button

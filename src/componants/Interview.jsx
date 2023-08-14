@@ -1,36 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getInterview } from "../redux/actions/action";
 
 
 const Interview = () => {
 
-  const [interview, setInterview] = useState([]);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.interReducer);
 
-  const fetchPost = async () => {
-    await getDocs(collection(db, "interview")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      
-      setInterview(newData);
-      console.log(interview);
-    });
-  };
+  useEffect(() => {
+    dispatch(getInterview());
+  }, [dispatch]);
 
-  useEffect(()=>{
-    fetchPost();
-}, [])
+  console.log('Users in component:', users);
+
   return (
     <div className="w-[1300px] mx-auto mt-8 p-12">
-    {interview.map((element, id) => (
-      <div key={id}>
-        <h3 className="text-3xl mb-8">{element.title}</h3>
-        <div dangerouslySetInnerHTML={{ __html: element.Content }} />
-      </div>
-    ))}
-  </div>
+      {users && users.length > 0 ? (
+        users.map((element, id) => (
+          <div key={id}>
+            <h3 className="text-3xl mb-8">{element.title}</h3>
+            <div dangerouslySetInnerHTML={{ __html: element.content }} />
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
   )
 }
 
