@@ -75,7 +75,7 @@ const Hero = () => {
          mag.map((element, id) => (
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={id}>
         <Link to="#">
-            <img class="rounded-t-lg" src={element.image} className='h-[200px] w-[350px]' alt="" />
+            <img class="rounded-t-lg" src={element.coverImage} className='h-[200px] w-[350px]' alt="" />
         </Link>
         <div class="p-5">
             <Link to="#">
