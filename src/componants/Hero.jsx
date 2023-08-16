@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBlog } from "../redux/actions/action";
 import { getMagazine } from '../redux/actions/action';
 import { getInterview } from '../redux/actions/action';
+import { useNavigate } from 'react-router-dom';
+
 
 const Hero = () => {
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const users = useSelector((state) => state.userReducer);
     const mag = useSelector((state) => state.magazineReducer);
     const inter = useSelector((state) => state.interReducer);
@@ -20,6 +22,13 @@ const Hero = () => {
       dispatch(getInterview());
     }, [dispatch]);
   
+
+ const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
 
   return (
@@ -39,12 +48,12 @@ const Hero = () => {
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{element.title}</h5>
             </Link>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{element.description}</p>
-            <Link to="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+            <p class="inline-flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 " onClick={() => { navigate(`/blog/${element.id}`); scrollToTop();}}>
                 Read more
                  <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
-            </Link>
+            </p>
         </div>
     </div>
      ))
@@ -55,7 +64,7 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-4 items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="#" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>
@@ -73,12 +82,12 @@ const Hero = () => {
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{element.title}</h5>
             </Link>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{element.description}</p>
-            <Link to="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+            <p class="inline-flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 " onClick={() => {  navigate(`/magazine/${element.id}`); scrollToTop();}}>
                 Read more
                  <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
-            </Link>
+            </p>
         </div>
     </div>
      ))
@@ -89,7 +98,7 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-4  items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="#" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>
@@ -107,12 +116,12 @@ const Hero = () => {
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{elements.title}</h5>
             </Link>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{elements.description}</p>
-            <Link to="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+            <p class="inline-flex items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 " onClick={() => { navigate(`/interview/${elements.id}`); scrollToTop();}}>
                 Read more
                  <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
-            </Link>
+            </p>
         </div>
     </div>
      ))
@@ -124,7 +133,7 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-8  items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="#" class="inline-flex mb-6 mt-8 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>

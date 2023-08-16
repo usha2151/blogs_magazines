@@ -16,9 +16,9 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Hero/>} />
         <Route path="/post" exact element={<Post />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/magazine" element={<Magazine />} />
-        <Route path="/interview" element={<Interview />} />
+        <Route path="/blog/:BlogId" element={<Blog />} />
+        <Route path="/magazine/:MagazineId" element={<Magazine />} />
+        <Route path="/interview/:InterviewId" element={<Interview />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
