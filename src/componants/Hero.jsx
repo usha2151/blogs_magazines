@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getBlog } from "../redux/actions/action";
@@ -9,6 +9,7 @@ import { getTalkshow } from '../redux/actions/action';
 
 const Hero = () => {
 
+    const [limit] = useState(3);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector((state) => state.userReducer);
@@ -32,18 +33,22 @@ const Hero = () => {
     });
   };
 
+  const slice1 = users.slice(0, limit);
+  const slice2 = mag.slice(0, limit);
+  const slice3 = inter.slice(0, limit);
+
 
   return (
     <>
       <div className='lg:w-[1300px] mx-w-[auto] mx-auto mt-12 '>
 <p className='text-3xl'>Blogs</p>
 
-<div className='grid grid-cols-4 gap-6 mt-4 mb-6'>
+<div className='grid grid-cols-3 gap-6 mt-4 mb-6'>
     {users.length > 0 ? (
-         users.map((element, id) => (
+         slice1.map((element, id) => (
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={id}>
         <Link to="#">
-            <img class="rounded-t-lg" src={element.image} className='h-[200px] w-[350px]' alt="" />
+            <img class="rounded-t-lg" src={element.image} className='h-[250px] w-[385px]' alt="" />
         </Link>
         <div class="p-5">
             <Link to="#">
@@ -66,18 +71,18 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="/blog" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>
 
 <p className='text-3xl'>Magazine</p>
-<div className='grid grid-cols-4 gap-6 mt-4 mb-6'>
+<div className='grid grid-cols-3 gap-6 mt-4 mb-6'>
     {mag.length > 0 ? (
-         mag.map((element, id) => (
+         slice2.map((element, id) => (
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={id}>
         <Link to="#">
-            <img class="rounded-t-lg" src={element.coverImage} className='h-[200px] w-[350px]' alt="" />
+            <img class="rounded-t-lg" src={element.coverImage} className='h-[250px] w-[385px]' alt="" />
         </Link>
         <div class="p-5">
             <Link to="#">
@@ -100,18 +105,18 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="/magazine" class="inline-flex mb-6 mt-4 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>
 
 <p className='text-3xl'>Interview</p>
-<div className='grid grid-cols-4 gap-6 mt-4 mb-6'>
+<div className='grid grid-cols-3 gap-6 mt-4 mb-6'>
     {inter.length > 0 ? (
-         inter.map((elements, id) => (
+         slice3.map((elements, id) => (
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={id}>
         <Link to="#">
-            <img class="rounded-t-lg" src={elements.image} className='h-[200px] w-[350px]' alt="" />
+            <img class="rounded-t-lg" src={elements.image} className='h-[250px] w-[385px]' alt="" />
         </Link>
         <div class="p-5">
             <Link to="#">
@@ -135,7 +140,7 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-8 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="/interview" class="inline-flex mb-6 mt-8 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>
@@ -170,7 +175,7 @@ const Hero = () => {
 </div>
 
 <div className='flex justify-center'>
-<Link to="#" class="inline-flex mb-6 mt-8 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+<Link to="/talkshow" class="inline-flex mb-6 mt-8 cursor-pointer items-center px-12 py-3 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r  from-blue-400 to-indigo-400 hover:from-indigo-400 hover:to-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 ">
    View More
 </Link>
 </div>

@@ -7,6 +7,11 @@ import Magazine from './componants/Magazine';
 import Hero from './componants/Hero';
 import Contact from './componants/Contact';
 import Talkshow from './componants/Talkshow';
+import BlogPage from './componants/pages/BlogPage';
+import MagazinePage from './componants/pages/MagazinePage';
+import InterviewPage from './componants/pages/InterviewPage';
+import TalkshowPage from './componants/pages/TalkshowPage';
+
 
 function App() {
   return (
@@ -15,7 +20,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' exact element={<Hero/>} />
-        <Route path="/post" exact element={<Post />} />
+        <Route path="/post" element={<Post />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/magazine' element={<MagazinePage />} />
+        <Route path='/interview' element={<InterviewPage />} />
+        <Route path='/talkshow' element={<TalkshowPage />} />
         <Route path="/blog/:BlogId" element={<Blog />} />
         <Route path="/magazine/:MagazineId" element={<Magazine />} />
         <Route path="/interview/:InterviewId" element={<Interview />} />
