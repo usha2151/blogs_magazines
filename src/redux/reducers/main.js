@@ -5,14 +5,17 @@ import interReducer from "./interviewreducer";
 import interviewIdReducer from "./interviewIdReducer";
 import blogIdReducer from "./blogIdReducer";
 import magazineIdReducer from "./magazineIdReducer";
-
+import talkshowReducer from "./talkshowReducer";
+import talkshowIdReducer from "./talkshowIdReducer";
 const rootred = combineReducers({
     userReducer,
     magazineReducer,
     interReducer,
     interviewIdReducer,
     blogIdReducer,
-    magazineIdReducer
+    magazineIdReducer,
+    talkshowReducer,
+    talkshowIdReducer
 });
 
 export default rootred

@@ -13,8 +13,8 @@ export const GET_INTERVIEW = 'GET_INTERVIEW';
 export const GET_INTERVIEWID = 'GET_INTERVIEWID';
 export const GET_BLOGID = 'GET_BLOGID';
 export const GET_MAGAZINEID = 'GET_MAGAZINEID';
-
-
+export const GET_TALKSHOW = 'GET_TALKSHOW';
+export const GET_TALKSHOWID = 'GET_TALKSHOWID'
    // This is for store data from post form
 export const registerUser = (userData) => {
 
@@ -276,7 +276,30 @@ export const getInterview = () => async (dispatch) => {
   }
 };
 
+// Fetch blog talkshow
+export const getTalkshow = () => async (dispatch) => {
+  try {
+    const q = query(collection(db, 'talkshow'));
+    const users = await getDocs(q);
 
+    if (users.docs.length > 0) {
+      const usersArray = users.docs.map((snap) => ({
+        id: snap.id,
+        ...snap.data(),
+      }));
+
+      dispatch({
+        type: GET_TALKSHOW,
+        payload: usersArray,
+      });
+
+      console.log('Fetched users inter:', usersArray);
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    // Handle error and dispatch an error action if needed
+  }
+};
 
 // fetch single interview data 
 export const getInterviewId = (id) => async (dispatch) => {
@@ -345,6 +368,31 @@ export const getMagazineId = (id) => async (dispatch) => {
 
       dispatch({
         type: GET_MAGAZINEID,
+        payload: [userData],
+      });
+
+      console.log('Fetched magazine single data:', userData);
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    // Handle error and dispatch an error action if needed
+  }
+};
+  
+// fetch single talkshow data 
+export const getTalkshowId = (id) => async (dispatch) => {
+  try {
+    const docRef = doc(db, 'talkshow', id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const userData = {
+        id: docSnap.id,
+        ...docSnap.data(),
+      };
+
+      dispatch({
+        type: GET_TALKSHOWID,
         payload: [userData],
       });
 

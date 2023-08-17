@@ -6,7 +6,7 @@ import Interview from './componants/Interview';
 import Magazine from './componants/Magazine';
 import Hero from './componants/Hero';
 import Contact from './componants/Contact';
-
+import Talkshow from './componants/Talkshow';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/blog/:BlogId" element={<Blog />} />
         <Route path="/magazine/:MagazineId" element={<Magazine />} />
         <Route path="/interview/:InterviewId" element={<Interview />} />
+        <Route path="/talkshow/:TalkshowId" element={<Talkshow />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
