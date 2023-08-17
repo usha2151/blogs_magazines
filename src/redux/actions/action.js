@@ -44,6 +44,7 @@ export const registerUser = (userData) => {
             description: userData.description,
             date: serverTimestamp(),
             image:url,
+            category: userData.category,
             tags:userData.tags
 
           }
@@ -94,6 +95,7 @@ export const registerUser = (userData) => {
                     description: userData.description,
                     pdf: pdfUrl,
                     tags:userData.tags,
+                    category: userData.category,
                     date: serverTimestamp(),
                     coverImage: imageUrl
                   })
@@ -135,6 +137,7 @@ export const registerUser = (userData) => {
             description: userData.description,
             date: serverTimestamp(),
             year:userData.year,
+            category: userData.category,
             Additional : {
               size:userData.size,
               weight:userData.weight
@@ -173,6 +176,7 @@ export const registerUser = (userData) => {
             date: serverTimestamp(),
             video:userData.video,
             image:url,
+            category: userData.category,
             tags:userData.tags
           }
            )

@@ -55,7 +55,7 @@ const Post = () => {
         console.log(image);
         // if(title == '' || content == '' || cat == ''){
           let data={
-            title,content,imagename: image.name,image,cat,description,year,size,pdf,weight, pdfName:pdf.name,tags,video
+            title,content,imagename: image.name,image,cat,description,year,size,pdf,weight, pdfName:pdf.name,tags,video,category
         }
         dispatch(registerUser(data));
         setTitle('');
@@ -220,10 +220,12 @@ const handleChange = (e) => {
                 value={category}
                 onChange={(e)=>{setCategory(e.target.value)}}
               >
-                <option selected>Choose</option>{" "}
-                <option value="funny">Funny</option>{" "}
-                <option value="amazing">Amazing</option>{" "}
-                <option value="horror">Horror</option>{" "}
+                <option selected>Choose Category</option>{" "}
+                <option value="fashion">Fashion</option>{" "}
+                <option value="commercial">Commercial</option>{" "}
+                <option value="corporate">Corporate</option>{" "}
+                <option value="fitness">Fitness</option>{" "}
+                <option value="glamour">Glamour</option>{" "}
               </select>
             </div>
 {catRole == "calender" ? 

@@ -6,6 +6,9 @@ import Interview from './componants/Interview';
 import Magazine from './componants/Magazine';
 import Hero from './componants/Hero';
 import Contact from './componants/Contact';
+import BlogPage from './componants/pages/BlogPage';
+import MagazinePage from './componants/pages/MagazinePage';
+import InterviewPage from './componants/pages/InterviewPage';
 
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' exact element={<Hero/>} />
-        <Route path="/post" exact element={<Post />} />
+        <Route path="/post" element={<Post />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/magazine' element={<MagazinePage />} />
+        <Route path='/interview' element={<InterviewPage />} />
         <Route path="/blog/:BlogId" element={<Blog />} />
         <Route path="/magazine/:MagazineId" element={<Magazine />} />
         <Route path="/interview/:InterviewId" element={<Interview />} />
