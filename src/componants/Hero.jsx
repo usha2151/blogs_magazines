@@ -36,6 +36,7 @@ const Hero = () => {
   const slice1 = users.slice(0, limit);
   const slice2 = mag.slice(0, limit);
   const slice3 = inter.slice(0, limit);
+  const slice4 = talkshow.slice(0, limit);
 
 
   return (
@@ -146,12 +147,12 @@ const Hero = () => {
 </div>
 
 <p className='text-3xl'>Talkshow</p>
-<div className='grid grid-cols-4 gap-6 mt-4 mb-6'>
+<div className='grid grid-cols-3 gap-6 mt-4 mb-6'>
     {talkshow.length > 0 ? (
-         talkshow.map((elements, id) => (
+         slice4.map((elements, id) => (
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={id}>
         <Link to="#">
-            <img class="rounded-t-lg" src={elements.image} className='h-[200px] w-[350px]' alt="" />
+            <img class="rounded-t-lg" src={elements.image} className='h-[250px] w-[385px]' alt="" />
         </Link>
         <div class="p-5">
             <Link to="#">
