@@ -21,7 +21,8 @@ const Talkshow = () => {
         <div key={id}>
           <h3 className="text-3xl mb-8">{element.title}</h3>
           <div dangerouslySetInnerHTML={{ __html: element.content }} />
-          <div dangerouslySetInnerHTML={{ __html: element.video }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: element.video }} /> */}
+           <iframe src={element.video} frameborder="0" allowfullscreen></iframe>
           <h1>{element.tags}</h1>
           <img src={element.image}></img>
         </div>
